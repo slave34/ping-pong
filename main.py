@@ -21,8 +21,18 @@ class GameSprite(sprite.Sprite):
         window.blit(self.image, (self.rect.x, self.rect.y))
 
 class Player(GameSprite):
-    def update(self):
-        pass
+    def update_l(self):
+        key_pressed = key.get_pressed()
+        if key_pressed[K_w] and self.rect.y > 5:
+            self.rect.y -= self.speed
+        if key_pressed[K_s] and self.rect.y < 700 - 250 - 5:
+            self.rect.y += self.speed
+    def update_d(self):
+        key_pressed = key.get_pressed()
+        if key_pressed[K_UP] and self.rect.y > 5:
+            self.rect.y -= self.speed
+        if key_pressed[K_DOWN] and self.rect.y < 700 - 250 - 5:
+            self.rect.y += self.speed
 
 game = True
 finish = False
@@ -34,10 +44,11 @@ while game:
     for e in event.get():  # получить все события, происходящие в этот момент
         if e.type == QUIT:
             game = False
-
+    window.fill((200,200,200))
     platform1.reset()
     platform2.reset()
-
+    platform1.update_l()
+    platform2.update_d()
     display.update()
     clock.tick(60)
 
