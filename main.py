@@ -12,10 +12,11 @@ mixer.init()
 
 game = True
 
-display.update()
-clock.tick(60)
 
 while game:
     for e in event.get():  # получить все события, происходящие в этот момент
         if e.type == QUIT:
             game = False
+
+display.update()
+clock.tick(60)
