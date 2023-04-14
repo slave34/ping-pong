@@ -38,7 +38,7 @@ game = True
 finish = False
 platform1 = Player('platform.png', 10,200,5,50,250)
 platform2 = Player('platform2.png', 940,200,5,50,250)
-
+ball = GameSprite('ball.png', 400,400,10,50,50)
 
 while game:
     for e in event.get():  # получить все события, происходящие в этот момент
@@ -49,6 +49,13 @@ while game:
     platform2.reset()
     platform1.update_l()
     platform2.update_d()
+    ball.reset()
+
+
+
+
+
+
     display.update()
     clock.tick(60)
 
