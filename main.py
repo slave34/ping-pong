@@ -39,26 +39,38 @@ finish = False
 platform1 = Player('platform.png', 10,200,5,50,250)
 platform2 = Player('platform2.png', 940,200,5,50,250)
 ball = GameSprite('ball.png', 400,400,10,50,50)
+font = font.Font(None, 40)
 speed_y = 3
 speed_x = 3
+win1 = font.render('Победил второй игрок', True, (255, 215,0))
+win2= font.render('Победил первый игрок', True, (0, 215,0))
 while game:
-    ball.rect.y += speed_y
-    ball.rect.x += speed_x
-    if ball.rect.y > 700 - 50 or ball.rect.y < 0:
-        speed_y *= -1
-    if sprite.collide_rect(platform1,ball):
-        speed_x *= -1
-    if sprite.collide_rect(platform2,ball):
-        speed_x *= -1
+    if finish != True:
+        window.fill((200,200,200))
+        platform1.reset()
+        platform2.reset()
+        platform1.update_l()
+        platform2.update_d()
+        ball.rect.y += speed_y
+        ball.rect.x += speed_x
+        if ball.rect.y > 700 - 50 or ball.rect.y < 0:
+            speed_y *= -1
+        if sprite.collide_rect(platform1,ball):
+            speed_x *= -1
+        if sprite.collide_rect(platform2,ball):
+            speed_x *= -1
+        if ball.rect.x < 0:
+            window.blit(win1,(500,400))
+            finish = True
+        if ball.rect.x > 1000 - 50:
+            window.blit(win2,(400,300))
+            finish = True
+
+        ball.reset()
+
     for e in event.get():  # получить все события, происходящие в этот момент
         if e.type == QUIT:
             game = False
-    window.fill((200,200,200))
-    platform1.reset()
-    platform2.reset()
-    platform1.update_l()
-    platform2.update_d()
-    ball.reset()
 
 
 
