@@ -44,7 +44,12 @@ speed_x = 3
 while game:
     ball.rect.y += speed_y
     ball.rect.x += speed_x
-   
+    if ball.rect.y > 700 - 50 or ball.rect.y < 0:
+        speed_y *= -1
+    if sprite.collide_rect(platform1,ball):
+        speed_x *= -1
+    if sprite.collide_rect(platform2,ball):
+        speed_x *= -1
     for e in event.get():  # получить все события, происходящие в этот момент
         if e.type == QUIT:
             game = False
@@ -62,4 +67,5 @@ while game:
 
     display.update()
     clock.tick(60)
+
 
