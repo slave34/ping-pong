@@ -39,8 +39,12 @@ finish = False
 platform1 = Player('platform.png', 10,200,5,50,250)
 platform2 = Player('platform2.png', 940,200,5,50,250)
 ball = GameSprite('ball.png', 400,400,10,50,50)
-
+speed_y = 3
+speed_x = 3
 while game:
+    ball.rect.y += speed_y
+    ball.rect.x += speed_x
+   
     for e in event.get():  # получить все события, происходящие в этот момент
         if e.type == QUIT:
             game = False
