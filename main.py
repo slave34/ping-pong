@@ -25,23 +25,23 @@ class Player(GameSprite):
         key_pressed = key.get_pressed()
         if key_pressed[K_w] and self.rect.y > 5:
             self.rect.y -= self.speed
-        if key_pressed[K_s] and self.rect.y < 700 - 250 - 5:
+        if key_pressed[K_s] and self.rect.y < 700 - 100 - 5:
             self.rect.y += self.speed
     def update_d(self):
         key_pressed = key.get_pressed()
         if key_pressed[K_UP] and self.rect.y > 5:
             self.rect.y -= self.speed
-        if key_pressed[K_DOWN] and self.rect.y < 700 - 250 - 5:
+        if key_pressed[K_DOWN] and self.rect.y < 700 - 100 - 5:
             self.rect.y += self.speed
 
 game = True
 finish = False
-platform1 = Player('platform.png', 10,200,5,50,250)
-platform2 = Player('platform2.png', 940,200,5,50,250)
+platform1 = Player('platform.png', 10,200,5,50,100)
+platform2 = Player('platform2.png', 940,200,5,50,100)
 ball = GameSprite('ball.png', 400,400,10,50,50)
 font = font.Font(None, 40)
-speed_y = 3
-speed_x = 3
+speed_y = 7
+speed_x = 7
 win1 = font.render('Победил второй игрок', True, (255, 215,0))
 win2= font.render('Победил первый игрок', True, (0, 215,0))
 while game:
@@ -63,7 +63,7 @@ while game:
             window.blit(win1,(500,400))
             finish = True
         if ball.rect.x > 1000 - 50:
-            window.blit(win2,(400,300))
+            window.blit(win2,(500,400))
             finish = True
 
         ball.reset()
@@ -79,5 +79,6 @@ while game:
 
     display.update()
     clock.tick(60)
+
 
 
